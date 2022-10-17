@@ -1,13 +1,16 @@
 package org.serratec.backend.library.domain;
 
 import java.util.Date;
-
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -18,13 +21,17 @@ import javax.validation.constraints.Size;
 public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_name")
+	@Column(name = "id_livro")
 	private Long id;
 	@Size(max = 40)
 	@NotNull
 	@Column(length = 40, nullable = false)
-	private String titulo;
-//	private String autor; Many To Many?
+	private String titulo;	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="autor_livro", 
+	joinColumns = @JoinColumn(name="id_livro"),
+	inverseJoinColumns = @JoinColumn(name="id_autor"))
+	private Set<Autor> autores;
 	@Size(max = 20)
 	@NotNull
 	@Column(length = 20, nullable = false, unique = true)
@@ -36,6 +43,14 @@ public class Livro {
 	private Date dataPublicacao;
 	
 	
+	public Set<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(Set<Autor> autores) {
+		this.autores = autores;
+	}
+
 	public Date getDataPublicacao() {
 		return dataPublicacao;
 	}
