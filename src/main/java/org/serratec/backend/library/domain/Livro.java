@@ -2,6 +2,7 @@ package org.serratec.backend.library.domain;
 
 import java.util.Date;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -41,8 +43,9 @@ public class Livro {
 	private Categoria categoria;
 	@Column(name = "data_publicacao")
 	private Date dataPublicacao;
-	
-	
+//	@OneToMany(mappedBy="idLivro")
+//	private Set<EmprestimoLivro> comentario;
+//	
 	public Set<Autor> getAutores() {
 		return autores;
 	}

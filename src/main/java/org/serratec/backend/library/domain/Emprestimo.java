@@ -1,6 +1,7 @@
 package org.serratec.backend.library.domain;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,10 +25,9 @@ public class Emprestimo {
 	@OneToOne
 	@JoinColumn(name = "id_associado", nullable = false)
 	private Associado associado;
-	
-//	@
-//	private Set<Livro> emprestimoLivros;
-	
+//	@OneToMany(mappedBy="idEmprestimo")
+//	private Set<EmprestimoLivro> comentario;
+
 	public Long getId() {
 		return id;
 	}
